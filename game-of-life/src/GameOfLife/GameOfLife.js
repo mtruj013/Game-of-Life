@@ -42,11 +42,17 @@ export default class GameofLife extends React.Component {
                 cells[colIndex][rowIndex] = GameofLife.cellState.OFF;
             }
         }
-
         return cells;
     }
     
+    // toggles cells 
+    toggleCellState(colIndex, rowIndex) {
+        const newState = this.state.cells;
 
+        newState[colIndex][rowIndex] = !newState[colIndex][rowIndex];
+
+        this.setState({state: newState})
+    }
     // renders this component
     render(){
         return (
@@ -71,7 +77,12 @@ export default class GameofLife extends React.Component {
         return (
             <div className= "column" key={`column_${colIndex}`}>
                 {rows.map((cellState, rowIndex) => {
-                    return <div className="cell" key={`cell_${colIndex}_${rowIndex}`}></div>
+                    const cellModifier = cellState === GameofLife.cellState.OFF ? 'off' : 'on'
+                    return <div 
+                        className={`cell cell--${cellModifier}`} 
+                        key={`cell_${colIndex}_${rowIndex}`}
+                        onClick={() => this.toggleCellState(colIndex, rowIndex)}
+                    />
                 })}
             </div>
         )
