@@ -1,0 +1,19 @@
+.GameOfLife {
+
+}
+
+.game_cells{
+    display: flex;
+}
+
+.column{
+    display: flex;
+    flex-direction: column;
+}
+
+.cell{
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border: 1px solid #c0c0c0;
+}

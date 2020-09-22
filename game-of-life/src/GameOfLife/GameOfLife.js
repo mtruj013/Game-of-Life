@@ -27,13 +27,6 @@ export default class GameofLife extends React.Component {
         }
     }
   
-    // creates state for the generation count
-    // constructor() {
-    //     super();
-    //     this.state = {
-    //         generations: 0
-    //     }
-    // }
     
     // initializes cells
     initializedCells() {
@@ -67,7 +60,19 @@ export default class GameofLife extends React.Component {
     rendercells(){
         return (
             <div className="game_cells">
-                cells
+                {this.state.cells.map((rows, colIndex) => {
+                    return this.renderColumns(rows, colIndex)
+                })}
+            </div>
+        )
+    }
+
+    renderColumns(rows, colIndex){
+        return (
+            <div className= "column" key={`column_${colIndex}`}>
+                {rows.map((cellState, rowIndex) => {
+                    return <div className="cell" key={`cell_${colIndex}_${rowIndex}`}></div>
+                })}
             </div>
         )
     }
