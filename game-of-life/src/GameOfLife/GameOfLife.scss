@@ -6,22 +6,26 @@
     display: flex;
 }
 
-.column{
+.column {
     display: flex;
     flex-direction: column;
 }
 
-.cell{
+.cell {
     width: 20px;
     height: 20px;
     background-color: white;
     border: 1px solid #c0c0c0;
 }
 
-.cell--on{
+.cell--on {
     background-color: black;
 }
 
-.cell--off{
+.cell--off {
     background-color: white;
+}
+
+.start_button {
+    margin-top: 30px;
 }

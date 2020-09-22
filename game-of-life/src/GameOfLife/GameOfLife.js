@@ -16,54 +16,63 @@ export default class GameofLife extends React.Component {
     static cellState = {
         ON: true,
         OFF: false
-    }  
-  
-  
+    }
+
+
     // creates state for the initialized cells
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.state ={
-            cells: this.initializedCells()
+
+        this.state = {
+            cells: this.initializedCells(),
+            isGameRunning: false
         }
     }
-  
-    
+
+
     // initializes cells
     initializedCells() {
         // 2d boolean array
         let cells = [];
 
         // fills the grid
-        for(let colIndex = 0; colIndex < GameofLife.grid.columns; colIndex++){
+        for (let colIndex = 0; colIndex < GameofLife.grid.columns; colIndex++) {
             // fills column with an empty array
             cells[colIndex] = [];
-            for(let rowIndex = 0; rowIndex < GameofLife.grid.rows; rowIndex++){
+            for (let rowIndex = 0; rowIndex < GameofLife.grid.rows; rowIndex++) {
                 // populates the cell 
                 cells[colIndex][rowIndex] = GameofLife.cellState.OFF;
             }
         }
         return cells;
     }
-    
+
     // toggles cells 
     toggleCellState(colIndex, rowIndex) {
         const newState = this.state.cells;
 
         newState[colIndex][rowIndex] = !newState[colIndex][rowIndex];
 
-        this.setState({state: newState})
+        this.setState({ state: newState })
     }
+
+    // toggle game state
+    toggleGameState() {
+        this.setState({ isGameRunning: !this.state.isGameRunning })
+    }
+
     // renders this component
-    render(){
+    render() {
         return (
             <div className="GameOfLife">
                 {this.rendercells()}
+                {this.renderStartButton()}
             </div>
         )
     }
 
     // renders the cells in the grid
-    rendercells(){
+    rendercells() {
         return (
             <div className="game_cells">
                 {this.state.cells.map((rows, colIndex) => {
@@ -73,18 +82,31 @@ export default class GameofLife extends React.Component {
         )
     }
 
-    renderColumns(rows, colIndex){
+    renderColumns(rows, colIndex) {
         return (
-            <div className= "column" key={`column_${colIndex}`}>
+            <div className="column" key={`column_${colIndex}`}>
                 {rows.map((cellState, rowIndex) => {
                     const cellModifier = cellState === GameofLife.cellState.OFF ? 'off' : 'on'
-                    return <div 
-                        className={`cell cell--${cellModifier}`} 
+                    return <div
+                        className={`cell cell--${cellModifier}`}
                         key={`cell_${colIndex}_${rowIndex}`}
                         onClick={() => this.toggleCellState(colIndex, rowIndex)}
                     />
                 })}
             </div>
+        )
+    }
+
+    renderStartButton() {
+        // toggle the label depending on game state
+        const buttonLabel = this.state.isGameRunning ? 'Stop' : 'Start';
+
+        return (
+            <button
+                className="start_button"
+                onClick={() => this.toggleGameState()}>
+                    {buttonLabel}
+            </button>
         )
     }
 }
