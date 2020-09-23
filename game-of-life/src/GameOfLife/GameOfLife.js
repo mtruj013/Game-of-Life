@@ -75,6 +75,20 @@ export default class GameofLife extends React.Component {
         })
     }
 
+    // clears grid of all life
+    clearGrid() {
+        // if game is running, stop it
+        if (this.state.isGameRunning){
+            this.setState({isGameRunning: !this.state.isGameRunning})
+        }
+        
+        // set the state to an empty grid, restart generation count
+        this.setState({
+            cells: this.initializedCells(),
+            generation: 0
+        })
+    }
+
     // logic for updating the cell state while game is running 
     computeNewCellState(colIndex, rowIndex) {
         const onCells = this.computeNeighbors(colIndex, rowIndex);
@@ -210,9 +224,16 @@ export default class GameofLife extends React.Component {
         )
     }
 
-    // renderGeneration() {
+    // renders the clear button 
+    renderClearButton(){
+        return (
+            <button className="clear_button"
+            onClick={() => this.clearGrid()}> 
+            Clear
+            </button>
+        )
+    }
 
-    // }
 
     // renders this component
     render() {
@@ -220,6 +241,7 @@ export default class GameofLife extends React.Component {
             <div className="GameOfLife">
                 {this.rendercells()}
                 {this.renderStartButton()}
+                {this.renderClearButton()}
         <h2>Generations: {this.state.generation}</h2>
             </div>
         )
