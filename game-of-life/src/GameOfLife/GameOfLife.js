@@ -20,11 +20,11 @@ export default class GameofLife extends React.Component {
 
 
     // creates state for the initialized cells
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
 
         this.state = {
-            cells: this.initializedCells(),
+            cells: this.initializedCells(), 
             isGameRunning: false
         }
 
@@ -111,9 +111,10 @@ export default class GameofLife extends React.Component {
             [-1, 0], // left
             [-1, 1], // top left
             [0, 1], // top
-            [1, 1], // right
-            [1, -1], // bottom right
-            [0, 1], // bottom
+            [1, 1], // top right
+            [1, 0], // right
+            [1, -1], //bottom right
+            [0, -1], // bottom
             [-1, -1] // bottom left
         ];
         
