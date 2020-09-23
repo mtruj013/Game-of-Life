@@ -25,7 +25,8 @@ export default class GameofLife extends React.Component {
 
         this.state = {
             cells: this.initializedCells(), 
-            isGameRunning: false
+            isGameRunning: false,
+            generation: 0
         }
 
         // calls the live function each second
@@ -68,7 +69,10 @@ export default class GameofLife extends React.Component {
             }
         }
 
-        this.setState({cells: newCells})
+        this.setState({
+            cells: newCells,
+            generation: this.state.generation + 1
+        })
     }
 
     // logic for updating the cell state while game is running 
@@ -206,12 +210,17 @@ export default class GameofLife extends React.Component {
         )
     }
 
+    // renderGeneration() {
+
+    // }
+
     // renders this component
     render() {
         return (
             <div className="GameOfLife">
                 {this.rendercells()}
                 {this.renderStartButton()}
+        <h2>Generations: {this.state.generation}</h2>
             </div>
         )
     }
