@@ -1,5 +1,8 @@
-.GameOfLife {
 
+body {
+    background-image: url(./images/background_abstract.jpeg);
+    background-size: cover;
+    color: black;
 }
 
 .game_cells{
@@ -29,3 +32,106 @@
 .start_button {
     margin-top: 30px;
 }
+
+h1 {
+    font-family: 'Quattrocento', serif;
+    font-size: 5.5rem;
+    text-align: center;
+}
+
+h2 {
+    font-family: 'Quattrocento', serif;
+    font-size: 1.5rem;
+    margin-top: 1.5rem;
+    text-align: center;
+}
+
+// .presets h2{
+//   font-stretch: expanded;  
+// }
+
+h3{
+    font-family: 'Quattrocento', serif;
+    font-size: 1.3rem;
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.creator h2{
+    margin: 0;
+}
+
+.rules p {
+    padding: .5rem;
+}
+
+.content{
+    display: flex;
+    justify-content: space-evenly;
+    
+}
+.GameOfLife{
+    margin-left: 5rem;
+    margin-right: 5rem;
+    width: 33%;
+    border: solid white;
+    border-radius: 10px;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    background-color: white;
+}
+
+.presets {
+    display: flex;
+    flex-direction: column;
+    // margin-left: 10rem;
+    justify-content: center;
+    width: 33%;
+    border: solid white;
+    border-radius: 10px;
+    padding-left: 10rem;
+    padding-right: 10rem;
+    background-color: white;
+}
+
+.about{
+    margin-left: 5rem;
+    margin-right: 5rem;
+    width: auto;
+    border: solid white;
+    border-radius: 10px;
+    background-color: white;
+}
+
+.rules{
+    margin-bottom: 5rem;
+}
+
+.blinker_1{
+    max-width: 135px;
+    max-height: 135px;
+    height: auto;
+    width: auto;
+    align-self: center;
+}
+
+.blinker_2{
+    max-width: 89px;
+    max-height: 145px;
+    align-self: center;
+}
+
+.blinker_3{
+    max-width: 178px;
+    max-height: 146px;
+    align-self: center;
+}
+
+p{
+    padding: .5rem;
+    margin-left: 1rem;
+}
+
+// .creator{
+//     max-width: 30%;
+// }
