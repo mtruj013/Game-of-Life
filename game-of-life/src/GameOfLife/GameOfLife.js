@@ -26,6 +26,7 @@ export default class GameofLife extends React.Component {
     // creates state for the initialized cells
     constructor() {
         super();
+        this.speed = 500
 
         this.state = {
             cells: [],
@@ -34,11 +35,12 @@ export default class GameofLife extends React.Component {
             grid: {
                 columns: 25,
                 rows: 25
-            }
+            },
+            color: "black"
         }
         
         // calls the live function each second
-        setInterval(() => this.life(), 500)
+        setInterval(() => this.life(), this.speed)
     }
 
     componentDidMount(){
@@ -231,14 +233,26 @@ export default class GameofLife extends React.Component {
 
 
     // renders the cells in the grid
-    rendercells() {
-        return (
-            <div className="game_cells">
-                {this.state.cells.map((rows, colIndex) => {
-                    return this.renderColumns(rows, colIndex)
-                })}
-            </div>
-        )
+    rendercells(color) {
+
+        switch(color) {
+            case "red":
+                return (
+                    <div className="game_cells">
+                        {this.state.cells.map((rows, colIndex) => {
+                            return this.renderRedCells(rows, colIndex)
+                        })}
+                    </div>
+                )
+            default: 
+                return (
+                    <div className="game_cells">
+                        {this.state.cells.map((rows, colIndex) => {
+                            return this.renderColumns(rows, colIndex)
+                        })}
+                    </div>
+                )
+        }
     }
 
     //render columns
@@ -248,6 +262,13 @@ export default class GameofLife extends React.Component {
                 {rows.map((cellState, rowIndex) => {
                     const cellModifier = cellState === GameofLife.cellState.OFF ? 'off' : 'on'
                     return <div
+                        style={ 
+                            cellState === GameofLife.cellState.ON ? 
+                            {
+                            backgroundColor: `${this.state.color}`
+                        } : {
+                            backgroundColor: `white`
+                        }}
                         className={`cell cell--${cellModifier}`}
                         key={`cell_${colIndex}_${rowIndex}`}
                         onClick={() => this.toggleCellState(colIndex, rowIndex)}
@@ -286,6 +307,11 @@ export default class GameofLife extends React.Component {
       this.setNewGridSize(event.target.value);
     }
 
+    handleColorSelect(event){
+        this.state.color = event.target.value
+        console.log(this.state.color)
+    }
+
     // renders grid size dropdown 
     renderGridSizeButton() {
         return (
@@ -306,11 +332,48 @@ export default class GameofLife extends React.Component {
             <select
             id= "color-choice"
             name= "grid-color"
+            onChange={this.handleColorSelect.bind(this)}
             >
+                <option value="black">black</option>
                 <option value="red">red</option>
                 <option value="blue"> blue</option>
                 <option value="green">green</option>
             </select>
+        )
+    }
+
+
+
+    renderRedCells(rows, colIndex) {
+        return (
+            <div className="column" key={`column_${colIndex}`}>
+                {rows.map((cellState, rowIndex) => {
+                    const cellModifier = cellState === GameofLife.cellState.OFF ? 'off' : 'on-r'
+                    return <div
+                        className={`cell cell--${cellModifier}`}
+                        key={`cell_${colIndex}_${rowIndex}`}
+                        onClick={() => this.toggleCellState(colIndex, rowIndex)}
+                    />
+                })}
+            </div>
+        )
+    }
+
+    renderSlowPlayButton(){
+        this.speed = 5000;
+
+        return(
+            <button className="slow_play"
+            onClick={() => setInterval(() => this.life(), this.speed)}>Slow</button>
+        )
+    }
+
+    renderFastPlayButton(){
+        this.speed = 200;
+
+        return(
+            <button className="fast_play"
+            onClick={() => setInterval(() => this.life(), this.speed)}>Fast</button>
         )
     }
 
@@ -326,6 +389,8 @@ export default class GameofLife extends React.Component {
                         {this.renderClearButton()}
                         {this.renderGridSizeButton()}
                         {this.renderCellColorPicker()}
+                        {this.renderSlowPlayButton()}
+                        {this.renderFastPlayButton()}
                         {this.rendercells()}
                         <h2>Generations: {this.state.generation}</h2>
                     </div>
