@@ -302,11 +302,12 @@ export default class GameofLife extends React.Component {
         )
     }
 
-    // handle event listener
+    // handle event listener for grid size select
     handleSelect(event) {
       this.setNewGridSize(event.target.value);
     }
 
+    //handle event listener for color select
     handleColorSelect(event){
         this.state.color = event.target.value
         console.log(this.state.color)
@@ -342,8 +343,6 @@ export default class GameofLife extends React.Component {
         )
     }
 
-
-
     renderRedCells(rows, colIndex) {
         return (
             <div className="column" key={`column_${colIndex}`}>
@@ -360,20 +359,18 @@ export default class GameofLife extends React.Component {
     }
 
     renderSlowPlayButton(){
-        this.speed = 5000;
-
         return(
             <button className="slow_play"
-            onClick={() => setInterval(() => this.life(), this.speed)}>Slow</button>
+            onClick={() => setInterval(() => this.life(), 1000)}>Slow</button>
         )
     }
 
     renderFastPlayButton(){
-        this.speed = 200;
+        // this.speed = 200;
 
         return(
             <button className="fast_play"
-            onClick={() => setInterval(() => this.life(), this.speed)}>Fast</button>
+            onClick={() => setInterval(() => this.life(), 100)}>Fast</button>
         )
     }
 
