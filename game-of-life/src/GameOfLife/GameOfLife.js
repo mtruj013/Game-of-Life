@@ -385,12 +385,14 @@ export default class GameofLife extends React.Component {
                 <h1>Game of Life</h1>
                 <div className="content">
                     <div className="GameOfLife">
-                        {this.renderStartButton()}
-                        {this.renderClearButton()}
-                        {this.renderGridSizeButton()}
-                        {this.renderCellColorPicker()}
-                        {this.renderSlowPlayButton()}
-                        {this.renderFastPlayButton()}
+                        <div className="buttons">
+                            {this.renderStartButton()}
+                            {this.renderClearButton()}
+                            {this.renderGridSizeButton()}
+                            {this.renderCellColorPicker()}
+                            {this.renderSlowPlayButton()}
+                            {this.renderFastPlayButton()}
+                        </div>
                         {this.rendercells()}
                         <h2>Generations: {this.state.generation}</h2>
                     </div>
@@ -415,8 +417,7 @@ export default class GameofLife extends React.Component {
                             <p>4. Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.</p>
                         </div>
                         <div className="creator">
-                            <h2>ABOUT THE CREATOR,</h2>
-                            <h2>JOHN CONWAY</h2>
+                            <h2>ABOUT THE CREATOR</h2>
                             <p>The Game of Life, also known simply as Life, is a cellular automaton devised by the British mathematician John Horton Conway in 1970.[1] It is a zero-player game, meaning that its evolution is determined by its initial state, requiring no further input. One interacts with the Game of Life by creating an initial configuration and observing how it evolves. It is Turing complete and can simulate a universal constructor or any other Turing machine.</p>
                         </div>
                         
