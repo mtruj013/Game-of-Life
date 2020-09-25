@@ -109,21 +109,23 @@ export default class GameofLife extends React.Component {
     setNewGridSize(size) {
         console.log(size)
         switch (size) {
-            case "1":
+            case "2":
                 this.setState({
                     grid: {
                         columns: 20,
                         rows: 10
                     }
                 })
+                console.log("after case 2",this.state.grid)
             break;
-            case "2":
+            case "3":
                 this.setState({
                     grid: {
                         columns: 30,
                         rows: 40
                     }
                 })
+                console.log("case 3", this.state.grid)
             break;
             default:
                 this.setState({
@@ -133,7 +135,7 @@ export default class GameofLife extends React.Component {
                     }
                 })
         }
-        console.log(this.state.grid)
+        console.log("outside switch", this.state.grid)
         this.clearGrid();
     }
 
@@ -320,9 +322,10 @@ export default class GameofLife extends React.Component {
                 id = "grid-size"
                 name= "size"
                 onChange={this.handleSelect.bind(this)}>
-                    <option value="1">20 x 10</option>
-                    <option value="2">30 x 40</option>
-                    <option value="3">25 x 25</option>
+                    <option value="1">25 x 25</option>
+                    <option value="2">20 x 10</option>
+                    <option value="3">30 x 40</option>
+                    
                 </select>
         )
     }
